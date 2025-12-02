@@ -1,0 +1,75 @@
+[build-system]
+requires = ["poetry-core>=2.2.1"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+name = "hotel"
+version = "0.0.1.dev0"
+description = "A OOP Hotel Management"
+readme = "README.md"
+license = "CUSTOM"
+authors = [
+  "Dwi Mulia Mokoginta (Universitas Pelita Harapan) <01085240006@student.uph.edu>",
+  "Sapwages Triazana (Universitas Pelita Harapan) <01085240012@student.uph.edu>",
+  "Sony Surahman (Universitas Pelita Harapan) <01085240001@student.uph.edu>",
+  "Sulaiman Rasyid Dinitra (Universitas Pelita Harapan) <@student.uph.edu>",
+]
+
+packages = [
+  { include = "hotel", from = "src" },
+]
+
+[tool.poetry.dependencies]
+aiosqlite = ">=0.21.0"
+asyncmy = ">=0.2.10"
+asyncpg = ">=0.31.0"
+faker = ">=38.2.0"
+flask = { version = ">=3.1.2", extras = ["async"] }
+poetry = ">=2.2.1"
+poetry-core = ">=2.2.1"
+python = ">=3.11,<4.0"
+ruff = ">=0.14.6"
+sqlalchemy = ">=2.0.44"
+
+[tool.poetry.group.dev.dependencies]
+cython = ">=3.2.1"
+pytest = ">=8.3.4"
+wheel = ">=0.45.1"
+ruff = ">=0.14.6"
+setuptools = ">=80.9.0"
+
+[tool.poetry.scripts]
+hotel = "hotel.__main__:main"
+
+[tool.ruff]
+src = ["src"]
+exclude = [".venv"]
+fix = true
+show-fixes = true
+output-format = "full"
+line-length = 120
+indent-width = 2
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+
+[tool.ruff.lint]
+select = [
+  "B",   # flake8-bugbear
+  "E",   # pycodestyle error
+  "F",   # pyflakes
+  "I",   # isort
+  "UP",  # pyupgrade
+  "W",   # pycodestyle warning
+]
+
+[tool.ruff.lint.isort]
+force-single-line = false
+order-by-type = false
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
+[egg_info]
+egg_base = "dist/.egg-info"
